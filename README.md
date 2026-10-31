@@ -38,7 +38,7 @@ Todos os valores são constantes no topo de cada classe, em `scripts/mechanics/`
 
 ```
 python -m venv .venv
-.venv\Scriptsctivate
+.venv\Scripts\activate
 pip install -r requirements.txt
 python application.py
 ```
