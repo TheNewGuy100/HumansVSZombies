@@ -29,6 +29,10 @@ Zumbis, munição e kits médicos são gerados de forma dinâmica, em vez de em 
 
 Todos os valores são constantes no topo de cada classe, em `scripts/mechanics/`.
 
+## Cenário
+
+O cenário tem parallax: céu, prédios, arbustos, calçada e rua rolam em velocidades diferentes, e há nuvens à deriva. A arte original juntava prédios, arbustos e fogo em uma imagem só; ao abrir o jogo, `scripts/background/layers.py` separa essas partes em camadas (em memória, sem alterar o `sprites.pyxres`), e os arbustos passam na frente dos prédios. O fogo é animado em quatro quadros (balanço, cor e ponta da chama) e solta faíscas.
+
 ## Menu de pausa e fim de jogo
 
 - **Pausa:** congela o mundo (inclusive o cenário) e oferece *Resume*, *Restart* e *Quit*.

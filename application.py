@@ -39,6 +39,7 @@ class App(
             quit_key=pyxel.KEY_NONE     # o ESC agora pausa; para sair use o menu de pausa
         )
         pyxel.load("assets/sprites.pyxres")
+        self.prepareBackground()
         self.resetGame()
 
     def run(self):
