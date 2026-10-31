@@ -29,9 +29,10 @@ class BackgroundClass():
     BACKGROUND_SKY_HEIGHT = 40                                                                   # ceu (parado): fundo liso atras de predios e arbustos
     BACKGROUND_BUILDINGS = (LAYER_IMAGE, BUILDINGS_V, SKYLINE_FIRST_ROW, 19, 0.30, STRIP_WIDTH, TRANSPARENT)   # predios ao longe
     BACKGROUND_BUSHES = (LAYER_IMAGE, BUSHES_V, BUSH_FIRST_ROW, 7, 0.55, STRIP_WIDTH, TRANSPARENT)             # arbustos, na frente dos predios
+    BACKGROUND_GROUND_SPEED = 1.00                      # calcada e rua formam o mesmo chao: andam juntas (e junto com os itens)
     BACKGROUND_GROUND = (
-        (0, SOURCE_V + 40, 40, 48, 1.00, 160, None),    # calcada e postes (mesma velocidade dos itens no chao)
-        (0, SOURCE_V + 88, 88, 32, 2.00, 160, None),    # rua, em primeiro plano
+        (0, SOURCE_V + 40, 40, 48, BACKGROUND_GROUND_SPEED, 160, None),    # calcada e postes
+        (0, SOURCE_V + 88, 88, 32, BACKGROUND_GROUND_SPEED, 160, None),    # rua
     )
 
     # nuvens entre o ceu e os predios: (x inicial, y, largura, altura, velocidade em px/frame)
