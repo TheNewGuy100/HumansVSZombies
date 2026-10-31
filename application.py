@@ -8,8 +8,11 @@ from scripts.mechanics.enemies import enemyClass
 from scripts.mechanics.medkitFind import medkitSpawner
 from scripts.player.index import playerClass
 from scripts.player.playerShoot import bulletsController
+from scripts.state.gameState import gameStateClass
+
 
 class App(
+        gameStateClass,
         playerClass,
         enemyClass,
         BackgroundClass,
@@ -22,19 +25,23 @@ class App(
 
     APP_HEIGHT = 120
     APP_WIDTH = 160
-    
+
     APP_Y_MIN_PLAYABLE_AREA = 30
     APP_Y_MAX_PLAYABLE_AREA = 100
     APP_X_MIN_PLAYABLE_AREA = 0
     APP_X_MAX_PLAYABLE_AREA = 160
-    
+
     def __init__(self):
         pyxel.init(
             self.APP_WIDTH,
             self.APP_HEIGHT,
-            caption="Zombies Invasion 1.0"
+            title="Zombies Invasion 1.0",
+            quit_key=pyxel.KEY_NONE     # o ESC agora pausa; para sair use o menu de pausa
         )
         pyxel.load("assets/sprites.pyxres")
+        self.resetGame()
+
+    def run(self):
         pyxel.run(
             self.update,
             self.draw
@@ -48,18 +55,29 @@ class App(
         self.drawEnemys()
         self.drawAmmoBox()
         self.drawMedkitBox()
-        self.gameOverCheck()
         self.drawHeadShots()
+        self.drawStateOverlay()
 
     def update(self):
+        self.updateGameState()
+        if not self.isPlaying():
+            return
+
+        self.game_frame += 1
         self.updatePlayer()
+        if not self.isPlaying():
+            return
+
         self.updateBackground()
-        self.checkMenuOptions()
-        self.updateUI()
         self.updateBullet()
         self.updateEnemys()
+        self.updateAmmoBox()
+        self.updateMedkitBox()
         self.spawnAmmoInMap()
         self.spawnMedkitInMap()
+        self.updateHeadShots()
+
 
 # APPLICATION CALL
-App()
+if __name__ == "__main__":
+    App().run()

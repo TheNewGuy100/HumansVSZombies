@@ -1,9 +1,4 @@
 
-import pyxel
-
 class optionsClass():
-
-    def checkMenuOptions(self):
-        if pyxel.btnp(pyxel.KEY_ESCAPE):
-            pyxel.quit()
-        
+    """Opcoes de menu: a pausa, o game over e o ESC agora vivem em scripts/state/gameState.py."""
+    pass

@@ -1,25 +1,19 @@
 
-
 import pyxel
 
 
 class playerCheckDead():
+    ENEMY_HIT_DAMAGE = 25
+
     def checkPlayerDead(self):
-        for index, enemy in enumerate(self.enemys_list):
-            if abs(enemy['y']-self.player_y) < 16 and abs(self.player_x-enemy['x']) < 8:
-                self.enemys_list.pop(index)
-                self.health -= 25
-                pyxel.play(0,5)
+        survivors = []
+        for enemy in self.enemys_list:
+            if abs(enemy['y'] - self.player_y) < 16 and abs(self.player_x - enemy['x']) < 8:
+                self.health -= self.ENEMY_HIT_DAMAGE
+                pyxel.play(0, 5)
+            else:
+                survivors.append(enemy)
+        self.enemys_list = survivors
 
-        if self.health == 0:
-            if self.player_is_alive:
-                self.player_is_alive = False
-                self.enableGameOver = True
-                pyxel.play(3, 5)
-
-            if self.player_is_alive == False:
-                self.score = 0
-                self.player_x = 72
-                self.player_y = -16
-                self.player_vy = 0
-                self.player_is_alive = True
+        if self.health <= 0 and self.isPlaying():
+            self.triggerGameOver()

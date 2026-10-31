@@ -15,8 +15,3 @@ class UIUpdate(
         self.drawScore()
         self.drawHealthBar()
         self.drawAmmoBar()
-
-    def updateUI(self):
-        self.checkMenuOptions()
-        self.checkHealth()
-
