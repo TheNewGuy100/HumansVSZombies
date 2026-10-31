@@ -1,4 +1,4 @@
-![Zombies Invasion em jogo](docs/preview.png)
+![Zombies Invasion em jogo: o jogador atira em zumbis em uma rua com prédios em chamas ao fundo](docs/preview.png)
 
 # HumansVSZombies (Zombies Invasion)
 
@@ -15,6 +15,14 @@ Jogo de tiro em pixel art feito com Python e [Pyxel](https://github.com/kitao/py
 | `R` | Jogar de novo na tela de fim de jogo |
 
 Acertar na cabeça rende bônus (**HEADSHOT!**).
+
+## O que tem
+
+- Tiro com munição limitada e bônus de **headshot**.
+- Zumbis, munição e kits médicos **gerados de forma adaptativa**: a dificuldade sobe com a pontuação, e os itens aparecem mais quando você precisa deles.
+- **Menu de pausa** e tela de fim de jogo, com recorde da sessão.
+- Cenário em **parallax**, com prédios, arbustos e chão em camadas, nuvens e **fogo animado**.
+- Suporte a teclado e controle.
 
 ## Geração procedural
 
