@@ -1,52 +1,52 @@
-![Zombies Invasion em jogo: o jogador atira em zumbis em uma rua com prédios em chamas ao fundo](docs/preview.png)
+![Zombies Invasion in play: the player shoots zombies on a street with burning buildings in the background](docs/preview.png)
 
 # HumansVSZombies (Zombies Invasion)
 
-Jogo de tiro em pixel art feito com Python e [Pyxel](https://github.com/kitao/pyxel): você é o último humano em uma rua tomada por zumbis. Atire, pegue munição e kits médicos, e sobreviva o máximo que conseguir.
+Pixel art shooter made with Python and [Pyxel](https://github.com/kitao/pyxel): you are the last human on a street overrun by zombies. Shoot, pick up ammo and medkits, and survive as long as you can.
 
-## Controles
+## Controls
 
-| Entrada | Ação |
+| Input | Action |
 | --- | --- |
-| `W` `A` `S` `D` ou direcional do controle | Mover |
-| `Espaço` ou botão B do controle | Atirar |
-| `P`, `ESC` ou Start do controle | Pausar e continuar |
-| `W` / `S` e `Enter` (ou `Espaço`) | Navegar e escolher nos menus |
-| `R` | Jogar de novo na tela de fim de jogo |
+| `W` `A` `S` `D` or gamepad d-pad | Move |
+| `Space` or gamepad B button | Shoot |
+| `P`, `ESC` or gamepad Start | Pause and resume |
+| `W` / `S` and `Enter` (or `Space`) | Navigate and choose in the menus |
+| `R` | Play again on the game over screen |
 
-Acertar na cabeça rende bônus (**HEADSHOT!**).
+Hitting the head gives a bonus (**HEADSHOT!**).
 
-## O que tem
+## Features
 
-- Tiro com munição limitada e bônus de **headshot**.
-- Zumbis, munição e kits médicos **gerados de forma adaptativa**: a dificuldade sobe com a pontuação, e os itens aparecem mais quando você precisa deles.
-- **Menu de pausa** e tela de fim de jogo, com recorde da sessão.
-- Cenário em **parallax**, com prédios, arbustos e chão em camadas, nuvens e **fogo animado**.
-- Suporte a teclado e controle.
+- Shooting with limited ammo and a **headshot** bonus.
+- Zombies, ammo and medkits are **generated adaptively**: difficulty rises with the score, and items show up more when you need them.
+- **Pause menu** and game over screen, with a session high score.
+- **Parallax** scenery, with buildings, bushes and ground in layers, clouds and **animated fire**.
+- Keyboard and gamepad support.
 
-## Geração procedural
+## Procedural generation
 
-Zumbis, munição e kits médicos são gerados de forma dinâmica, em vez de em intervalos fixos.
+Zombies, ammo and medkits are generated dynamically instead of at fixed intervals.
 
-| Elemento | Como é gerado |
+| Element | How it is generated |
 | --- | --- |
-| **Nível** | Sobe a cada 500 pontos (até o 20) |
-| **Zumbis** | O limite na tela cresce com o nível (de 5 até 16), o intervalo entre zumbis diminui, cada um tem sua velocidade sorteada uma vez, e a chance de um zumbi corredor aumenta. Não nascem em cima de outro |
-| **Munição** | A cada 2,5 s há um sorteio. A chance vai de 10% (cheia) a 80% (zerada), e sempre aparece uma caixa quando acaba. Uma caixa por vez |
-| **Kits médicos** | A cada 3,3 s há um sorteio. A chance vai de 5% a 65% conforme a vida cai, e nunca aparece com a vida cheia |
+| **Level** | Goes up every 500 points (up to 20) |
+| **Zombies** | The on-screen cap grows with the level (from 5 to 16), the interval between zombies shrinks, each one gets its speed rolled once, and the chance of a runner zombie increases. They never spawn on top of each other |
+| **Ammo** | A roll happens every 2.5 s. The chance goes from 10% (full) to 80% (empty), and a box always shows up when you run out. One box at a time |
+| **Medkits** | A roll happens every 3.3 s. The chance goes from 5% to 65% as health drops, and one never appears at full health |
 
-Todos os valores são constantes no topo de cada classe, em `scripts/mechanics/`.
+All values are constants at the top of each class, in `scripts/mechanics/`.
 
-## Cenário
+## Scenery
 
-O cenário tem parallax: céu, prédios, arbustos e chão (calçada e rua, juntas) rolam em velocidades diferentes, e há nuvens à deriva. A arte original juntava prédios, arbustos e fogo em uma imagem só; ao abrir o jogo, `scripts/background/layers.py` separa essas partes em camadas (em memória, sem alterar o `sprites.pyxres`), e os arbustos passam na frente dos prédios. O fogo é animado em quatro quadros (balanço, cor e ponta da chama) e solta faíscas.
+The scenery has parallax: sky, buildings, bushes and ground (sidewalk and road, together) scroll at different speeds, and clouds drift by. The original art combined buildings, bushes and fire in a single image; when the game opens, `scripts/background/layers.py` splits these parts into layers (in memory, without changing `sprites.pyxres`), and the bushes are drawn in front of the buildings. The fire is animated in four frames (sway, color and flame tip) and gives off sparks.
 
-## Menu de pausa e fim de jogo
+## Pause menu and game over
 
-- **Pausa:** congela o mundo (inclusive o cenário) e oferece *Resume*, *Restart* e *Quit*.
-- **Fim de jogo:** mostra a pontuação e o recorde da sessão, com *Play again* e *Quit*.
+- **Pause:** freezes the world (including the scenery) and offers *Resume*, *Restart* and *Quit*.
+- **Game over:** shows the score and the session high score, with *Play again* and *Quit*.
 
-## Como rodar
+## Running
 
 ```
 python -m venv .venv
@@ -55,15 +55,15 @@ pip install -r requirements.txt
 python application.py
 ```
 
-O arquivo `assets/sprites.pyxres` foi criado em uma versão antiga do Pyxel; o jogo o carrega normalmente e o Pyxel imprime um aviso sugerindo salvá-lo de novo no editor.
+The `assets/sprites.pyxres` file was created in an old Pyxel version; the game loads it normally and Pyxel prints a warning suggesting to save it again in the editor.
 
-## Estrutura
+## Structure
 
-| Pasta | Conteúdo |
+| Folder | Contents |
 | --- | --- |
-| `application.py` | Janela, laço principal e composição das classes |
-| `scripts/state/` | Estados do jogo (jogando, pausa, fim de jogo) e os menus |
-| `scripts/player/` | Movimento, animação, tiro e colisão com zumbis |
-| `scripts/mechanics/` | Zumbis, caixas de munição e kits médicos |
-| `scripts/UI/` | Vida, munição, pontuação, nível e aviso de headshot |
-| `scripts/background/` | Cenário em rolagem |
+| `application.py` | Window, main loop and class composition |
+| `scripts/state/` | Game states (playing, pause, game over) and the menus |
+| `scripts/player/` | Movement, animation, shooting and collision with zombies |
+| `scripts/mechanics/` | Zombies, ammo boxes and medkits |
+| `scripts/UI/` | Health, ammo, score, level and headshot notice |
+| `scripts/background/` | Scrolling scenery |
